@@ -1,0 +1,250 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+/* Estilos generales */
+
+h2 {
+    text-align: center;
+    color: #fcfcfc;
+    font-weight: 600;
+    font-size: 46px;
+    text-shadow: 0px 0px 1px #484848;
+}
+
+h3 {
+    text-align: center;
+    color: #fcfcfc;
+    font-weight: 400;
+    text-shadow: 0px 0px 1px #484848;
+}
+
+
+/* Estilos background principal */
+
+div.back-tmp {
+    background-image: url('./assets/img/bk-lluvioso.jpg');
+}
+
+div.back {
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: all 0.8s ease-in-out;
+}
+
+.back-01d {
+    background-image: url('./assets/img/bk-soleado.jpg');
+}
+
+.back-01n {
+    background-image: url('./assets/img/bk-despejado.jpg');
+}
+
+.back-02d,
+.back-02n,
+.back-03d,
+.back-03n,
+.back-04d,
+.back-04n {
+    background-image: url('./assets/img/bk-parcial-nubes-noche.jpg');
+}
+
+.back-09d,
+.back-09n,
+.back-10d,
+.back-10n {
+    background-image: url('./assets/img/bk-lluvioso.jpg');
+}
+
+.back-11d,
+.back-11n {
+    background-image: url('./assets/img/bk-tormenta.jpg');
+}
+
+.back-13d,
+.back-13n {
+    background-image: url('./assets/img/bk-nevando.jpg');
+}
+
+.back-50d,
+.back-50n {
+    background-image: url('./assets/img/bk-nieblina.jpg');
+}
+
+div#overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 149, 255, .25);
+}
+
+
+/* Estilos grafica */
+
+div.chart-wrapper {
+    background-color: rgb(67, 67, 67, .7);
+    border-radius: 6px;
+    box-shadow: 0px 0px 15px #a3a3a3;
+    padding: 12px;
+}
+
+
+/* Estilos tarjetas */
+
+div.card-dark {
+    background-color: #343a40d1;
+    box-shadow: 0px 0px 15px #a3a3a3;
+}
+
+
+/* Estilos temperatura actual */
+
+p.txt-temp {
+    color: #fcfcfc;
+    font-weight: 600;
+    font-size: 74px;
+    line-height: 74px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+p.ctn-dato {
+    font-size: 16px;
+    line-height: 40px;
+    padding-left: 50px;
+    vertical-align: middle;
+    position: relative;
+    margin: 5px;
+}
+
+p.ctn-dato::before {
+    content: '';
+    display: inline-block;
+    left: 5px;
+    position: absolute;
+    top: 0px;
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    background-position: center;
+}
+
+p.viento::before {
+    background-image: url('assets/img/wind.png');
+}
+
+p.humedad::before {
+    background-image: url('assets/img/humedad.png');
+}
+
+p.presion::before {
+    background-image: url('assets/img/presion.png');
+}
+
+p.amanece::before {
+    background-image: url('assets/img/sunrise.png');
+}
+
+p.oscurece::before {
+    background-image: url('assets/img/sunset.png');
+}
+
+p.minmax {
+    display: block;
+    font-size: 14px;
+    line-height: 35px;
+    text-align: center;
+    width: 100%;
+}
+
+span.icmax,
+span.icmin {
+    font-size: 14px;
+    line-height: 35px;
+    padding-left: 45px;
+    vertical-align: middle;
+    position: relative;
+    margin: 5px;
+}
+
+span.icmax::before,
+span.icmin::before {
+    content: '';
+    display: inline-block;
+    left: 5px;
+    position: absolute;
+    top: -8px;
+    width: 35px;
+    height: 35px;
+    background-size: cover;
+    background-position: center;
+}
+
+span.icmax::before {
+    background-image: url('assets/img/icmax.png');
+}
+
+span.icmin::before {
+    background-image: url('assets/img/icmin.png');
+}
+
+div.ctn-pron {
+    padding: 5px;
+    border-radius: 6px;
+    box-shadow: 0px 0px 7px #cccccc;
+}
+
+p.txt-max,
+p.txt-min {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+p.txt-max {
+    color: #fa4203;
+}
+
+p.txt-min {
+    color: #02fafa;
+}
+
+p.txt-dia {
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+
+/* Animaciones */
+
+.transicion {
+    transition: all 0.8s ease-in-out;
+}
+
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.fast {
+    -webkit-animation-duration: 0.4s;
+    animation-duration: 0.4s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    animation-name: fadeIn;
+}

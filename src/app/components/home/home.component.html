@@ -1,0 +1,100 @@
+<div class="container">
+    <div class="col-sm-12 p-4">
+        <div class="row">
+            <div class="col-sm-6 p-4">
+                <!-- Sección temperatura actual -->
+                <div *ngIf="dataActual" class="card text-white mb-3 card-dark animated fadeIn">
+                    <div class="card-body">
+                        <h2 class="animated fadeIn">{{ dataActual.name }}</h2>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p class="txt-temp animated fadeIn">{{ dataActual.main.temp }} °C</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="../../../assets/img/{{ dataActual.weather[0].icon }}.png" alt="Descripción" class="mw-100 animated fadeIn transicion">
+                                <p class="text-center animated fadeIn">{{ dataActual.weather[0].icon | descripcion }}</p>
+                            </div>
+                            <p class="minmax animated fadeIn"><span class="icmax">{{ dataActual.main.temp_max }} °C</span> - <span class="icmin">{{ dataActual.main.temp_min }} °C</span></p>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <!-- Información adicional de temperatura actual -->
+                                <div class="accordion" id="accordionExample">
+                                    <div class="card text-white bg-secondary">
+                                        <div class="card-header p-0" id="headingOne">
+                                            <h3 class="mb-0">
+                                                <button class="btn btn-block text-center text-white" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Más Información</button>
+                                            </h3>
+                                        </div>
+                                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <p class="ctn-dato viento animated fadeIn">{{ dataActual.wind.speed }} m/s</p>
+                                                        <p class="ctn-dato humedad animated fadeIn">{{ dataActual.main.humidity }} %</p>
+                                                        <p class="ctn-dato presion animated fadeIn">{{ dataActual.main.pressure }} hPa</p>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <p class="ctn-dato amanece animated fadeIn">{{ (dataActual.sys.sunrise | horas) | date:'shortTime' }}</p>
+                                                        <p class="ctn-dato oscurece animated fadeIn">{{ (dataActual.sys.sunset | horas) | date:'shortTime' }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Sección Buscador -->
+                <div class="card text-white mt-4 mb-3 card-dark">
+                    <div class="card-header">Buscador</div>
+                    <div class="card-body">
+                        <form (submit)="busquedaTmp(txtciudad, txtzip)">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="inp-ciudad" placeholder="Ciudad" #txtciudad>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="inp-zip" placeholder="Código Postal" #txtzip>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-outline-light" id="btn-buscar">Buscar</button>
+                            </div>
+                        </form>
+                        <div *ngIf="error" class="alert alert-danger text-center mt-3 animated fadeIn" role="alert">
+                            {{ msjError }}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-6 p-4">
+                <!-- Sección Pronostico Semanal -->
+                <div *ngIf="dataDias" class="card text-white mb-3 card-dark">
+                    <div class="card-body">
+                        <h3>Pronóstico Semanal</h3>
+                        <div class="row mt-3">
+                            <div *ngFor="let pro of dataDias" class="col-sm-3">
+                                <div class="ctn-pron">
+                                    <p class="txt-dia animated fadeIn">{{ pro.dt | dias }}</p>
+                                    <img src="{{ pro.weather[0].icon | iconos }}" class="mb-2 mw-100 animated fadeIn transicion">
+                                    <p class="txt-max animated fadeIn">{{ pro.temp.max }}°</p>
+                                    <p class="txt-min animated fadeIn">{{ pro.temp.min }}°</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sección Grafica Pronostico Semanal Temperatura Max y Min -->
+                <div class="chart-wrapper">
+                    <canvas *ngIf="dataPronostico" baseChart [datasets]="chartData" [labels]="chartLabels" [options]="chartOptions" [colors]="chartColor" [legend]="chartLegend" [chartType]="chartType" [plugins]="chartPlugins">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
